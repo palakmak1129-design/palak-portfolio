@@ -457,6 +457,24 @@ img{display:block;max-width:100%;}
 .contact__row a{color:var(--muted);transition:color .2s;}
 .contact__row a:hover{color:var(--ink);}
 
+/* ===== contact cards ===== */
+.contact__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px;text-align:left;}
+.ccard{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 24px;background:var(--paper);border:1px solid var(--line);border-radius:18px;text-decoration:none;box-shadow:0 18px 40px -28px rgba(0,0,0,.55);transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .4s;}
+.ccard:hover{transform:translateY(-6px);border-color:var(--accent);box-shadow:var(--shadow);}
+.ccard__text h3{font-family:var(--display);font-size:20px;letter-spacing:-0.02em;line-height:1;color:var(--ink);margin-bottom:8px;}
+.ccard__text p{font-family:var(--mono);font-size:11.5px;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);}
+.ccard__icon{flex:none;display:grid;place-items:center;width:54px;height:54px;border-radius:14px;background:var(--slate-soft);border:1px solid var(--line);color:var(--accent);transition:background .3s,color .3s,transform .4s cubic-bezier(.2,.8,.2,1);}
+.ccard__icon svg{width:23px;height:23px;display:block;}
+.ccard:hover .ccard__icon{background:var(--accent);color:var(--bg);transform:rotate(-6deg) scale(1.08);}
+
+/* ===== resume button ===== */
+.contact__resume{margin-top:40px;}
+.resume-btn{display:inline-flex;align-items:center;gap:12px;padding:17px 32px;border-radius:100px;background:var(--accent);color:var(--bg);font-family:var(--mono);font-size:13px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;box-shadow:var(--shadow);transition:filter .3s;}
+.resume-btn:hover{filter:brightness(1.08);}
+.resume-btn svg{width:19px;height:19px;display:block;}
+
+@media (max-width:760px){.contact__cards{grid-template-columns:1fr;gap:14px;margin-top:44px;}.contact__resume{margin-top:32px;}}
+
 /* ===== footer ===== */
 .foot{border-top:1px solid var(--line);padding:30px 48px;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;flex-wrap:wrap;}
 
@@ -794,11 +812,40 @@ html.no-js .reveal,html.no-js .reveal-l,html.no-js .reveal-r{opacity:1;transform
     <div class="wrap">
       <span class="eyebrow">Got a project in mind?</span>
       <h2><a href="mailto:hello@palak.design" data-magnetic="" data-cursor="">Let's<br>connect</a></h2>
-      <div class="contact__row">
-        <a href="mailto:hello@palak.design" data-cursor="">hello@palak.design</a>
-        <a href="#" data-cursor="">LinkedIn</a>
-        <a href="#" data-cursor="">Behance</a>
-        <a href="#" data-cursor="">Resume ↗</a>
+      <div class="contact__cards reveal">
+        <a class="ccard" href="https://www.linkedin.com/in/palak-makhija-0704a323b/" data-link="linkedin" data-cursor="Visit" target="_blank" rel="noopener noreferrer">
+          <div class="ccard__text">
+            <h3>LinkedIn</h3>
+            <p>Connect professionally</p>
+          </div>
+          <span class="ccard__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.44-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zm1.78 13.02H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+          </span>
+        </a>
+        <a class="ccard" href="https://www.instagram.com/uknow._.palak/" data-link="instagram" data-cursor="Visit" target="_blank" rel="noopener noreferrer">
+          <div class="ccard__text">
+            <h3>Instagram</h3>
+            <p>Behind the design</p>
+          </div>
+          <span class="ccard__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.6" cy="6.4" r="1.2" fill="currentColor" stroke="none"/></svg>
+          </span>
+        </a>
+        <a class="ccard" href="https://wa.me/919837603100" data-link="whatsapp" data-cursor="Chat" target="_blank" rel="noopener noreferrer">
+          <div class="ccard__text">
+            <h3>WhatsApp</h3>
+            <p>Message me directly</p>
+          </div>
+          <span class="ccard__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.47 14.38c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.64.14-.19.29-.73.93-.9 1.12-.16.19-.33.22-.62.07-.29-.14-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.44.13-.59.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49l-.55-.01c-.19 0-.5.07-.76.36-.26.29-1 .98-1 2.38 0 1.41 1.02 2.76 1.17 2.95.14.19 2.01 3.08 4.88 4.32.68.29 1.21.47 1.63.6.68.22 1.31.19 1.8.11.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.55-.34zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.79-1.31l-.34-.2-3.55.93.95-3.46-.22-.36a9.36 9.36 0 0 1-1.44-4.99A9.42 9.42 0 0 1 18.7 5.6a9.35 9.35 0 0 1 2.76 6.66 9.42 9.42 0 0 1-9.41 9.24zM20.52 3.49A11.75 11.75 0 0 0 12.05 0C5.5 0 .18 5.32.18 11.87c0 2.09.55 4.13 1.59 5.93L.08 24l6.33-1.66a11.85 11.85 0 0 0 5.64 1.43h.01c6.54 0 11.86-5.32 11.87-11.86a11.79 11.79 0 0 0-3.41-8.42z"/></svg>
+          </span>
+        </a>
+      </div>
+      <div class="contact__resume reveal">
+        <a class="resume-btn" href="assets/Palak-Makhija-Resume.pdf" download="Palak-Makhija-Resume.pdf" data-resume="" data-magnetic="" data-cursor="Download" target="_blank" rel="noopener noreferrer">
+          <span>Download résumé</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </a>
       </div>
     </div>
   </section>
