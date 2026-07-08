@@ -896,7 +896,11 @@ class Component extends DCLogic {
     $all('[data-year]').forEach(function(el){ el.textContent=new Date().getFullYear(); });
     var _started=false;
     function ScrollTriggerRefresh(){ if(hasGSAP && window.ScrollTrigger) ScrollTrigger.refresh(); }
-    function startSite(){ if(_started) return; _started=true; document.body.classList.remove('locked'); ScrollTriggerRefresh(); heroEntrance(); }
+    // Honour an incoming URL hash (e.g. arriving from a case study's "More work" link).
+    // The loader locks scroll during boot, so the browser's native hash jump is lost;
+    // re-apply it once the site is unlocked and ScrollTrigger has settled the layout.
+    function scrollToHash(){ var id=location.hash; if(!id||id.length<2) return; var t; try{t=document.querySelector(id);}catch(e){return;} if(!t) return; var go=function(){ window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-70,behavior:'auto'}); }; requestAnimationFrame(function(){ requestAnimationFrame(go); }); setTimeout(go,300); setTimeout(go,700); }
+    function startSite(){ if(_started) return; _started=true; document.body.classList.remove('locked'); ScrollTriggerRefresh(); heroEntrance(); scrollToHash(); }
     (function loader(){
       var loader=$('#loader'), bar=$('#loaderBar'), pct=$('#loaderPct');
       var names=$all('.loader__name span');
